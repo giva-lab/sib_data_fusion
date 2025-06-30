@@ -1,0 +1,9 @@
+*.ipynb_checkpoints
+*.png
+*.pdf
+*.txt
+*poetry.lock
+*.pyc
+__pycache__/
+*.py[cod]
+datasets
