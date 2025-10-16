@@ -39,8 +39,18 @@ Based on [CityHub](http://sibgrapi.sid.inpe.br/col/sid.inpe.br/sibgrapi/2022/09.
 <img width="1344" height="976" alt="image" src="https://github.com/user-attachments/assets/3123f5e4-50a3-40d7-a78c-6e3c4e8a0616" />
 
 
-## Installation 
+## How to cite
 
+If you use this repository or its data/code in your research, please cite the following paper:
+> **Ximena Pocco**, Waqar Hassan, Karelia Salinas, Vladimir Molchanov, Luis G. Nonato, *Exploring Urban Factors with Autoencoders: Relationship Between Static and Dynamic Features*, SIBGRAPI Conference on Graphics, Patterns and Images, 2025, DOI: [https://arxiv.org/abs/2509.06167](https://arxiv.org/abs/2509.06167)
 
-## References
+### BibTeX
+```bibtex
+@article{pocco2025exploring,
+  title={Exploring Urban Factors with Autoencoders: Relationship Between Static and Dynamic Features},
+  author={Pocco, Ximena and Hassan, Waqar and Salinas, Karelia and Molchanov, Vladimir and Nonato, Luis G},
+  journal={arXiv preprint arXiv:2509.06167},
+  year={2025}
+}
+```
 
