@@ -127,100 +127,54 @@ for i in range(1, 6):
 
 # Ahora tienes 5 figuras: scatters[0] hasta scatters[4]
 
-# Dash layout
+for i in range(5):
+    scatters[i].update_layout(height=300)  # altura fija
+
+# Dash layout con height estático
 app.layout = dbc.Container(
     [
         html.H1(""),
         html.H4(children='Visual Explorer', className="text-center"),
         html.Hr(),
 
-        # Primera fila: Título de la Vista de Proyección
         dbc.Row(html.H5(children='Projection View'), className="mb-3"),
 
-        # Segunda fila: Gráficos de características estáticas, dinámicas y mixtas
         dbc.Row(
             [
-                dbc.Col([
-                    html.H6(children='M1 Static'),
-                    dcc.Graph(id="projectionScatter1", figure=scatters[0], className="mb-4"),
-                ], width=2),
-                dbc.Col([
-                    html.H6(children='M1 Dynamic'),
-                    dcc.Graph(id="projectionScatter2", figure=scatters[1], className="mb-4"),
-                ], width=2),
-                dbc.Col([
-                    html.H6(children='M2'),
-                    dcc.Graph(id="projectionScatter3", figure=scatters[2], className="mb-4"),
-                ], width=2),
-                
-                dbc.Col([
-                    html.H6(children='M3'),
-                    dcc.Graph(id="projectionScatter4", figure=scatters[3], className="mb-4"),
-                ], width=3),
-                dbc.Col([
-                    html.H6(children='M4'),
-                    dcc.Graph(id="projectionScatter5", figure=scatters[4], className="mb-4"),
-                ], width=3),
+                dbc.Col([html.H6('M1 Static'), dcc.Graph(id="projectionScatter1", figure=scatters[0], style={'height':'300px'})], width=2),
+                dbc.Col([html.H6('M1 Dynamic'), dcc.Graph(id="projectionScatter2", figure=scatters[1], style={'height':'300px'})], width=2),
+                dbc.Col([html.H6('M2'), dcc.Graph(id="projectionScatter3", figure=scatters[2], style={'height':'300px'})], width=2),
+                dbc.Col([html.H6('M3'), dcc.Graph(id="projectionScatter4", figure=scatters[3], style={'height':'300px'})], width=3),
+                dbc.Col([html.H6('M4'), dcc.Graph(id="projectionScatter5", figure=scatters[4], style={'height':'300px'})], width=3),
             ]
         ),
 
-        # Tercera fila: Vista de Mapa y Distribución de Características
         dbc.Row([
-            # Columna del mapa
-            dbc.Col([
-                html.H5("Map View"),
-                dcc.Graph(id="mymap", figure=fig, className="mb-4"),
-            ], width=6),
-
-            # Columna de barplots con grilla 2x2
+            dbc.Col([html.H5("Map View"), dcc.Graph(id="mymap", figure=fig, style={'height':'450px'})], width=6),
             dbc.Col([
                 html.H5("Discrete Features Bar Plots"),
-                dbc.Row([
-                    dbc.Col(dcc.Graph(id="barplot_estacao_metro"), width=6),
-                    dbc.Col(dcc.Graph(id="barplot_estacao_trem"), width=6),
-                ]),
-                dbc.Row([
-                    dbc.Col(dcc.Graph(id="barplot_terminal_onibus"), width=6),
-                    dbc.Col(dcc.Graph(id="barplot_favela_proxima"), width=6),
-                ]),
+                dbc.Row([dbc.Col(dcc.Graph(id="barplot_estacao_metro", style={'height':'300px'}), width=6),
+                         dbc.Col(dcc.Graph(id="barplot_estacao_trem", style={'height':'300px'}), width=6)]),
+                dbc.Row([dbc.Col(dcc.Graph(id="barplot_terminal_onibus", style={'height':'300px'}), width=6),
+                         dbc.Col(dcc.Graph(id="barplot_favela_proxima", style={'height':'300px'}), width=6)]),
             ], width=6)
         ]),
         html.H5(children='Features Box Plots'),
-        dbc.Row(
-            [   
-                dbc.Col([
-                    #html.H5(children='Boxplot global'),
-                    dcc.Graph(id="boxplot_census_global"),
-                ], width=4),  # Ajustar el ancho según sea necesario
-                dbc.Col([
-                    #html.H5(children='Boxplot selected'),
-                    dcc.Graph(id="boxplot_census_selected"),
-                ], width=4),  # Ajustar el ancho según sea necesario
-                dbc.Col([
-                    #html.H5(children='Boxplot combined'),
-                    dcc.Graph(id="boxplot_census_combined"),
-                ], width=4),  # Ajustar el ancho según sea necesario
-            ]
-        ),
-        dbc.Row(
-            [   
-                dbc.Col([
-                    html.H5(children='Time Series Crime'),
-                    dcc.Graph(id='time_series_crime', figure=fig_time_series, className="mb-4"),
-                ], width=12),  # Ajustar el ancho según sea necesario
-            ]
-        ),
+        dbc.Row([   
+            dbc.Col(dcc.Graph(id="boxplot_census_global", style={'height':'400px'}), width=4),
+            dbc.Col(dcc.Graph(id="boxplot_census_selected", style={'height':'400px'}), width=4),
+            dbc.Col(dcc.Graph(id="boxplot_census_combined", style={'height':'400px'}), width=4),
+        ]),
+        dbc.Row([   
+            dbc.Col([html.H5('Time Series Crime'), dcc.Graph(id='time_series_crime', figure=fig_time_series, style={'height':'300px'})], width=12),
+        ]),
 
-
-        # Almacenamiento de datos para interacciones
         dcc.Store(id="features-detail-df"),
         dcc.Store(id="features-general-df"),
         dcc.Store(id="input_features"),
     ],
     fluid=True
 )
-
-
 global dataframes_array
 
 # Projection View
